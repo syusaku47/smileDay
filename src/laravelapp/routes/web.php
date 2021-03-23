@@ -11,6 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('bases/create');
+// });
+
+Route::get('bases/create', 'BaseController@create')->name('bases.create');

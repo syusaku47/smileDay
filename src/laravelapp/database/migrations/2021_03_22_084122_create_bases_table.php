@@ -14,8 +14,15 @@ class CreateBasesTable extends Migration
     public function up()
     {
         Schema::create('bases', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
+            $table->string('base_name', 255);
+            $table->string('address', 255);
+            $table->string('phone_number', 255);
+            // $table->integer('content_id')->unsigned();
+            $table->integer('base_type_id');
             $table->timestamps();
+
+            // $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade'); 
         });
     }
 
