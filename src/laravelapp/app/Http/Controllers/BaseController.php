@@ -9,6 +9,10 @@ use App\Http\Requests\StoreBase;
 class BaseController extends Controller
 {
 
+    public function index()
+    {
+        return "テストでーす";
+    }
     public function create()
     {
         return view('bases.create');
