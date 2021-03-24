@@ -14,7 +14,7 @@
 // Route::get('/', function () {
 //     return view('bases/create');
 // });
-Route::get('/admin', 'HomeController@index')->name('homes.index');
+// Route::get('/admin', 'HomeController@index')->name('homes.index');
 
 Route::get('bases/create', 'BaseController@create')->name('bases.create');
 Route::post('bases/create', 'BaseController@store')->name('bases.store');

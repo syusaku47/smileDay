@@ -18,13 +18,39 @@ class BaseController extends Controller
         return view('bases.create');
     }
 
+    // public function store(StoreBase $request)
     public function store(StoreBase $request)
     {
+        // return "POSTテスト";
+        try {
+            $base = new Base();
+            $base->fill($request->all());
+            $base->save();
 
-        $base = new Base();
-        $base->fill($request->all());
-        $base->save();
+            $result = [
+                'result'      => true,
+                'response' => $base,
+                // 'base_name' => $base->base_name,
+            ];
+        } catch (\Exception $e) {
+            $result = [
+                'result' => false,
+                'error' => [
+                    'messages' => [$e->getMessage()]
+                ],
+            ];
+            return $this->resConversionJson($result, $e->getCode());
+        }
+        return $this->resConversionJson($result);
 
         return redirect()->route('bases.create');
+    }
+
+    private function resConversionJson($result, $statusCode = 200)
+    {
+        if (empty($statusCode) || $statusCode < 100 || $statusCode >= 600) {
+            $statusCode = 500;
+        }
+        return response()->json($result, $statusCode, ['Content-Type' => 'application/json'], JSON_UNESCAPED_SLASHES);
     }
 }
