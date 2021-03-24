@@ -16,5 +16,7 @@
 // });
 // Route::get('/admin', 'HomeController@index')->name('homes.index');
 
+Route::get('/', 'HomeController@index')->name('homes.index');
 Route::get('bases/create', 'BaseController@create')->name('bases.create');
 Route::post('bases/create', 'BaseController@store')->name('bases.store');
+Route::post('users/create', 'UserController@store')->name('users.store');
