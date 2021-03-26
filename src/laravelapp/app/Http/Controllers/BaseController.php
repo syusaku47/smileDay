@@ -16,7 +16,7 @@ class BaseController extends Controller
     }
     public function create()
     {
-        return view('bases.create');
+        return view('admin.bases.create');
     }
 
     // public function store(StoreBase $request)
@@ -27,14 +27,15 @@ class BaseController extends Controller
             $base = new Base();
             $base->fill($request->all());
             $base->save();
-
-            $content = new Content();
-            $content->save();
+            // \Log::info($base);
+            // $content = new Content();
+            // $content->base_id = $base->id;
+            // $content->save();
 
             $result = [
-                'result'      => true,
+                'result'  => true,
                 'base' => $base,
-                'conten' => $content,
+                // 'conten' => $content,
             ];
         } catch (\Exception $e) {
             $result = [
@@ -45,9 +46,9 @@ class BaseController extends Controller
             ];
             return $this->resConversionJson($result, $e->getCode());
         }
-        return $this->resConversionJson($result);
+        // return $this->resConversionJson($result);
 
-        return redirect()->route('bases.create');
+        return redirect()->route('admin.bases.create');
     }
 
     private function resConversionJson($result, $statusCode = 200)

@@ -98,7 +98,7 @@ class UserController extends Controller
         }
 
         return $this->resConversionJson($result);
-        return redirect()->action('HomeController@index');
+        return redirect()->route('admin.homes.index');
     }
 
     private function resConversionJson($result, $statusCode = 200)

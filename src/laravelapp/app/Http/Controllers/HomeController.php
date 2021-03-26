@@ -8,6 +8,10 @@ class HomeController extends Controller
 {
     public function index()
     {
+        return view('admin.homes.index');
+    }
+    public function user_index()
+    {
         return view('homes.index');
     }
 }

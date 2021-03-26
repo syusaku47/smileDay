@@ -1,0 +1,26 @@
++--------+-----------+----------------------+----------------------+----------------------------------------------+--------------+
+| Domain | Method    | URI                  | Name                 | Action                                       | Middleware   |
++--------+-----------+----------------------+----------------------+----------------------------------------------+--------------+
+|        | GET|HEAD  | /                    | homes.index          | App\Http\Controllers\HomeController@index    | web          |
+|        | GET|HEAD  | admin                | homes.index          | App\Http\Controllers\HomeController@index    | web          |
+|        | POST      | admin/bases/create   | admin.bases.store    | App\Http\Controllers\BaseController@store    | web          |
+|        | GET|HEAD  | admin/bases/create   | admin.bases.create   | App\Http\Controllers\BaseController@create   | web          |
+|        | GET|HEAD  | admin/contents/index | admin.contents.index | App\Http\Controllers\ContentController@index | web          |
+|        | POST      | admin/users/create   | admin.users.store    | App\Http\Controllers\UserController@store    | web          |
+|        | GET|HEAD  | api/bases            | bases.index          | App\Http\Controllers\BaseController@index    | api          |
+|        | POST      | api/bases            | bases.store          | App\Http\Controllers\BaseController@store    | api          |
+|        | GET|HEAD  | api/bases/{basis}    | bases.show           | App\Http\Controllers\BaseController@show     | api          |
+|        | PUT|PATCH | api/bases/{basis}    | bases.update         | App\Http\Controllers\BaseController@update   | api          |
+|        | DELETE    | api/bases/{basis}    | bases.destroy        | App\Http\Controllers\BaseController@destroy  | api          |
+|        | GET|HEAD  | api/homes            | homes.index          | App\Http\Controllers\HomeController@index    | api          |
+|        | POST      | api/homes            | homes.store          | App\Http\Controllers\HomeController@store    | api          |
+|        | GET|HEAD  | api/homes/{home}     | homes.show           | App\Http\Controllers\HomeController@show     | api          |
+|        | PUT|PATCH | api/homes/{home}     | homes.update         | App\Http\Controllers\HomeController@update   | api          |
+|        | DELETE    | api/homes/{home}     | homes.destroy        | App\Http\Controllers\HomeController@destroy  | api          |
+|        | GET|HEAD  | api/user             |                      | Closure                                      | api,auth:api |
+|        | POST      | api/users            | users.store          | App\Http\Controllers\UserController@store    | api          |
+|        | GET|HEAD  | api/users            | users.index          | App\Http\Controllers\UserController@index    | api          |
+|        | DELETE    | api/users/{user}     | users.destroy        | App\Http\Controllers\UserController@destroy  | api          |
+|        | PUT|PATCH | api/users/{user}     | users.update         | App\Http\Controllers\UserController@update   | api          |
+|        | GET|HEAD  | api/users/{user}     | users.show           | App\Http\Controllers\UserController@show     | api          |
++--------+-----------+----------------------+----------------------+----------------------------------------------+--------------+
