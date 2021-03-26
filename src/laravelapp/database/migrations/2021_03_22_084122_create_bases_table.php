@@ -15,15 +15,13 @@ class CreateBasesTable extends Migration
     {
         Schema::create('bases', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('base_name', 255);
+            $table->string('base_name', 60);
             $table->integer('potal_number');
+            $table->integer('prefecture_id');
             $table->string('address', 255);
-            $table->string('phone_number', 255);
-            // $table->integer('content_id')->unsigned();
+            $table->string('phone_number');
             $table->integer('base_type_id');
             $table->timestamps();
-
-            // $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade'); 
         });
     }
 

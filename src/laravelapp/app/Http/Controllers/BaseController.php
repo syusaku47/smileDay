@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Base;
+use App\Models\Content;
 use App\Http\Requests\StoreBase;
 
 class BaseController extends Controller
@@ -27,10 +28,13 @@ class BaseController extends Controller
             $base->fill($request->all());
             $base->save();
 
+            $content = new Content();
+            $content->save();
+
             $result = [
                 'result'      => true,
-                'response' => $base,
-                // 'base_name' => $base->base_name,
+                'base' => $base,
+                'conten' => $content,
             ];
         } catch (\Exception $e) {
             $result = [
