@@ -1,26 +1,41 @@
-+--------+-----------+----------------------+----------------------+----------------------------------------------+--------------+
-| Domain | Method    | URI                  | Name                 | Action                                       | Middleware   |
-+--------+-----------+----------------------+----------------------+----------------------------------------------+--------------+
-|        | GET|HEAD  | /                    | homes.index          | App\Http\Controllers\HomeController@index    | web          |
-|        | GET|HEAD  | admin                | homes.index          | App\Http\Controllers\HomeController@index    | web          |
-|        | POST      | admin/bases/create   | admin.bases.store    | App\Http\Controllers\BaseController@store    | web          |
-|        | GET|HEAD  | admin/bases/create   | admin.bases.create   | App\Http\Controllers\BaseController@create   | web          |
-|        | GET|HEAD  | admin/contents/index | admin.contents.index | App\Http\Controllers\ContentController@index | web          |
-|        | POST      | admin/users/create   | admin.users.store    | App\Http\Controllers\UserController@store    | web          |
-|        | GET|HEAD  | api/bases            | bases.index          | App\Http\Controllers\BaseController@index    | api          |
-|        | POST      | api/bases            | bases.store          | App\Http\Controllers\BaseController@store    | api          |
-|        | GET|HEAD  | api/bases/{basis}    | bases.show           | App\Http\Controllers\BaseController@show     | api          |
-|        | PUT|PATCH | api/bases/{basis}    | bases.update         | App\Http\Controllers\BaseController@update   | api          |
-|        | DELETE    | api/bases/{basis}    | bases.destroy        | App\Http\Controllers\BaseController@destroy  | api          |
-|        | GET|HEAD  | api/homes            | homes.index          | App\Http\Controllers\HomeController@index    | api          |
-|        | POST      | api/homes            | homes.store          | App\Http\Controllers\HomeController@store    | api          |
-|        | GET|HEAD  | api/homes/{home}     | homes.show           | App\Http\Controllers\HomeController@show     | api          |
-|        | PUT|PATCH | api/homes/{home}     | homes.update         | App\Http\Controllers\HomeController@update   | api          |
-|        | DELETE    | api/homes/{home}     | homes.destroy        | App\Http\Controllers\HomeController@destroy  | api          |
-|        | GET|HEAD  | api/user             |                      | Closure                                      | api,auth:api |
-|        | POST      | api/users            | users.store          | App\Http\Controllers\UserController@store    | api          |
-|        | GET|HEAD  | api/users            | users.index          | App\Http\Controllers\UserController@index    | api          |
-|        | DELETE    | api/users/{user}     | users.destroy        | App\Http\Controllers\UserController@destroy  | api          |
-|        | PUT|PATCH | api/users/{user}     | users.update         | App\Http\Controllers\UserController@update   | api          |
-|        | GET|HEAD  | api/users/{user}     | users.show           | App\Http\Controllers\UserController@show     | api          |
-+--------+-----------+----------------------+----------------------+----------------------------------------------+--------------+
++--------+-----------+-----------------------------------------------------+-----------------------------------+------------------------------------------------------------------------+---------------------+
+| Domain | Method    | URI                                                 | Name                              | Action                                                                 | Middleware          |
++--------+-----------+-----------------------------------------------------+-----------------------------------+------------------------------------------------------------------------+---------------------+
+|        | GET|HEAD  | /                                                   | homes.index                       | App\Http\Controllers\HomeController@user_index                         | web,auth            |
+|        | GET|HEAD  | admin                                               | admin.homes.index                 | App\Http\Controllers\HomeController@index                              | web,auth:admin,auth |
+|        | GET|HEAD  | admin/bases/create                                  | admin.bases.create                | App\Http\Controllers\BaseController@create                             | web,auth:admin      |
+|        | POST      | admin/bases/create                                  | admin.bases.store                 | App\Http\Controllers\BaseController@store                              | web,auth:admin      |
+|        | GET|HEAD  | admin/bases/{basis}/contents                        | bases.contents.index              | App\Http\Controllers\ContentController@index                           | web,auth:admin      |
+|        | GET|HEAD  | admin/bases/{basis}/contents/{content}/contentLists | bases.contents.contentLists.index | App\Http\Controllers\ContentListController@index                       | web,auth:admin      |
+|        | GET|HEAD  | admin/login                                         | admin.login                       | App\Http\Controllers\Admin\LoginController@showLoginForm               | web,guest:admin     |
+|        | POST      | admin/login                                         |                                   | App\Http\Controllers\Admin\LoginController@login                       | web,guest:admin     |
+|        | POST      | admin/users/create                                  | admin.users.store                 | App\Http\Controllers\UserController@store                              | web,auth:admin      |
+|        | POST      | api/bases                                           | bases.store                       | App\Http\Controllers\BaseController@store                              | api                 |
+|        | GET|HEAD  | api/bases                                           | bases.index                       | App\Http\Controllers\BaseController@index                              | api                 |
+|        | GET|HEAD  | api/bases/{basis}                                   | bases.show                        | App\Http\Controllers\BaseController@show                               | api                 |
+|        | PUT|PATCH | api/bases/{basis}                                   | bases.update                      | App\Http\Controllers\BaseController@update                             | api                 |
+|        | DELETE    | api/bases/{basis}                                   | bases.destroy                     | App\Http\Controllers\BaseController@destroy                            | api                 |
+|        | POST      | api/homes                                           | homes.store                       | App\Http\Controllers\HomeController@store                              | api,auth            |
+|        | GET|HEAD  | api/homes                                           | homes.index                       | App\Http\Controllers\HomeController@index                              | api,auth            |
+|        | DELETE    | api/homes/{home}                                    | homes.destroy                     | App\Http\Controllers\HomeController@destroy                            | api,auth            |
+|        | PUT|PATCH | api/homes/{home}                                    | homes.update                      | App\Http\Controllers\HomeController@update                             | api,auth            |
+|        | GET|HEAD  | api/homes/{home}                                    | homes.show                        | App\Http\Controllers\HomeController@show                               | api,auth            |
+|        | GET|HEAD  | api/user                                            |                                   | Closure                                                                | api,auth:api        |
+|        | POST      | api/users                                           | users.store                       | App\Http\Controllers\UserController@store                              | api                 |
+|        | GET|HEAD  | api/users                                           | users.index                       | App\Http\Controllers\UserController@index                              | api                 |
+|        | DELETE    | api/users/{user}                                    | users.destroy                     | App\Http\Controllers\UserController@destroy                            | api                 |
+|        | PUT|PATCH | api/users/{user}                                    | users.update                      | App\Http\Controllers\UserController@update                             | api                 |
+|        | GET|HEAD  | api/users/{user}                                    | users.show                        | App\Http\Controllers\UserController@show                               | api                 |
+|        | GET|HEAD  | home                                                | home                              | App\Http\Controllers\HomeController@index                              | web,auth            |
+|        | POST      | login                                               |                                   | App\Http\Controllers\Auth\LoginController@login                        | web,guest           |
+|        | GET|HEAD  | login                                               | login                             | App\Http\Controllers\Auth\LoginController@showLoginForm                | web,guest           |
+|        | POST      | logout                                              | logout                            | App\Http\Controllers\Auth\LoginController@logout                       | web                 |
+|        | POST      | password/confirm                                    |                                   | App\Http\Controllers\Auth\ConfirmPasswordController@confirm            | web,auth            |
+|        | GET|HEAD  | password/confirm                                    | password.confirm                  | App\Http\Controllers\Auth\ConfirmPasswordController@showConfirmForm    | web,auth            |
+|        | POST      | password/email                                      | password.email                    | App\Http\Controllers\Auth\ForgotPasswordController@sendResetLinkEmail  | web                 |
+|        | POST      | password/reset                                      | password.update                   | App\Http\Controllers\Auth\ResetPasswordController@reset                | web                 |
+|        | GET|HEAD  | password/reset                                      | password.request                  | App\Http\Controllers\Auth\ForgotPasswordController@showLinkRequestForm | web                 |
+|        | GET|HEAD  | password/reset/{token}                              | password.reset                    | App\Http\Controllers\Auth\ResetPasswordController@showResetForm        | web                 |
+|        | POST      | register                                            |                                   | App\Http\Controllers\Auth\RegisterController@register                  | web,guest           |
+|        | GET|HEAD  | register                                            | register                          | App\Http\Controllers\Auth\RegisterController@showRegistrationForm      | web,guest           |
++--------+-----------+-----------------------------------------------------+-----------------------------------+------------------------------------------------------------------------+---------------------+

@@ -11,13 +11,13 @@
 |
 */
 
-// Route::get('/', function () {
-//     return view('bases/create');
-// });
-// Route::get('/admin', 'HomeController@index')->name('homes.index');
+Auth::routes();
 
-Route::group(['prefix' => 'admin'], function () {
-    Route::get('/', 'HomeController@index')->name('admin.homes.index');
+
+
+
+Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
+    Route::get('/homes', 'HomeController@admin_index')->name('admin.homes.admin_index');
     Route::get('bases/create', 'BaseController@create')->name('admin.bases.create');
     Route::post('bases/create', 'BaseController@store')->name('admin.bases.store');
     Route::post('users/create', 'UserController@store')->name('admin.users.store');
@@ -26,9 +26,10 @@ Route::group(['prefix' => 'admin'], function () {
     Route::resource('bases.contents.contentLists', 'ContentListController', ['only' => ['index']]);
     // Route::get('contentLists/index', 'ContentController@index')->name('admin.contentLists.index');
 });
+Route::group(['prefix' => 'admin'], function () {
+    Route::get('login',     'Admin\LoginController@showLoginForm')->name('admin.login');
+    Route::post('login',    'Admin\LoginController@login');
+});
 
-Route::get('/', 'HomeController@user_index')->name('homes.index');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@user_index');
+Route::get('/show', 'HomeController@show');
