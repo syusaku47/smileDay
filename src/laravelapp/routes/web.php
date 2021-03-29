@@ -21,7 +21,14 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('bases/create', 'BaseController@create')->name('admin.bases.create');
     Route::post('bases/create', 'BaseController@store')->name('admin.bases.store');
     Route::post('users/create', 'UserController@store')->name('admin.users.store');
-    Route::get('contents/index', 'ContentController@index')->name('admin.contents.index');
+    // Route::get('contents/index', 'ContentController@index')->name('admin.contents.index');
+    Route::resource('bases.contents', 'ContentController', ['only' => ['index']]);
+    Route::resource('bases.contents.contentLists', 'ContentListController', ['only' => ['index']]);
+    // Route::get('contentLists/index', 'ContentController@index')->name('admin.contentLists.index');
 });
 
 Route::get('/', 'HomeController@user_index')->name('homes.index');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

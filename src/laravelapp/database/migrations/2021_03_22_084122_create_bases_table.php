@@ -16,10 +16,12 @@ class CreateBasesTable extends Migration
         Schema::create('bases', function (Blueprint $table) {
             $table->increments('id');
             $table->string('base_name', 60);
+            $table->string('base_name_kana', 60);
             $table->integer('potal_number');
-            $table->integer('prefecture_id');
-            $table->string('address', 255);
-            $table->string('phone_number');
+            $table->integer('prefectures_id');
+            $table->string('city', 60);
+            $table->string('town', 255);
+            $table->BigInteger('phone_number');
             $table->integer('base_type_id');
             $table->timestamps();
         });
